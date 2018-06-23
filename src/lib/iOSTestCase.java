@@ -1,24 +1,28 @@
 package lib;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.ios.IOSDriver;
 import junit.framework.TestCase;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class CoreTestCase extends TestCase {
+import java.net.URL;
 
-    private static final String PLATFORM_IOS = "ios";
-    private static final String PLATFORM_ANDROID = "android";
-
+public class iOSTestCase extends TestCase {
     protected AppiumDriver driver;
-    protected Platform Platform;
+    private static String AppiumURL = "http://127.0.0.1:4723/wd/hub";
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
 
-        this.Platform = new Platform();
-        driver = this.Platform.getDriver();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone SE");
+        capabilities.setCapability("platformVersion", "11.3");
+        capabilities.setCapability("app", "C:/Users/Admin/JavaAppiumAutomation/Wikipedia/apks/Wikipedia.app");
+
+        driver = new IOSDriver(new URL(AppiumURL), capabilities);
         this.rotateScreenPortrait();
     }
 
@@ -39,14 +43,4 @@ public class CoreTestCase extends TestCase {
     protected void backgroundApp(int seconds) {
         driver.runAppInBackground(seconds);
     }
-
-
-
-
-
 }
-
-
-
-
-

@@ -22,7 +22,6 @@ public class ArticleTests extends CoreTestCase {
 
     }
 
-
     @Test
     public void testSwipeArticle() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
@@ -34,4 +33,6 @@ public class ArticleTests extends CoreTestCase {
         ArticlePageObject.swipeToFooter();
 
     }
+
+
 }
